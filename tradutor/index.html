@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Traduzir textos</title>
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-image: url(fundo.png);
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .conteudo {
+            padding: 1em;
+            border: 1px solid #ccc;
+            margin-bottom: 1em;
+            align-items: center;
+            margin: 36px;
+            text-align: center;
+            background-color: #D95D20;
+            color: white;
+            font-family: 'zapzap';
+            width: auto;
+
+        }
+
+        @font-face {
+            font-family: 'zapzap';
+            src: url(bignoodletitling/big_noodle_titling.ttf);
+        }
+
+        #idiomas {
+            margin-top: 1em;
+            display: flex;
+            width: 100vw;
+            align-items: center;
+            justify-content: end;
+
+        }
+
+        img {
+            width: 80px;
+            height: 80px;
+
+
+        }
+
+        .titulo {
+            font-family: 'zapzap';
+            background-color: #D95D20;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <h1 class="titulo">Historia dos herois</h1>
+    </div>
+    
+    <div id="idiomas">
+        <img src="bandeir do estados unidos.png" onclick="Escolher('en')"></img>
+        <img src="bandeira da brasil.png" onclick="Escolher('ptbr')"></img>
+        <img src="bandeira da espanha.png" onclick="Escolher('es')"></img>
+    </div>
+    <div class="conteudo" id="paragrafo1">
+        <h1>Ashe</h1>
+    </div>
+    <div class="conteudo" id="paragrafo2">
+        <h1>Genji</h1>
+    </div>
+    <div class="conteudo" id="paragrafo3">
+        <h1>Hanzo</h1>
+    </div>
+    <div class="conteudo" id="paragrafo4">
+        <h1>Mei</h1>
+    </div>
+    <div class="conteudo" id="paragrafo5">
+        <h1>Soldado 76</h1>
+    </div>
+
+
+
+    <script>
+        function Escolher(idioma) {
+            fetch(`textos_${idioma}.json`)
+                .then(resposta => resposta.json())
+                .then(texto => {
+                    document.getElementById('paragrafo1').innerText = texto.paragrafo1;
+                    document.getElementById('paragrafo2').innerText = texto.paragrafo2;
+                    document.getElementById('paragrafo3').innerText = texto.paragrafo3;
+                    document.getElementById('paragrafo4').innerText = texto.paragrafo4;
+                    document.getElementById('paragrafo5').innerText = texto.paragrafo5;
+                })
+
+                .catch(error => console.error('Erro buscando textos:', error))
+        }
+    </script>
+</body>
+
+</html>
